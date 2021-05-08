@@ -12,6 +12,11 @@ public class playerController : MonoBehaviour
     public GameManager gm;
     public int health = 5;
     public float speed = 4;
+    public float groundDetectDistance = .1f;
+    public Vector2 groundDetection;
+    public bool isGrounded = true;
+    public float jumpHeight = 6.25f;
+
 
     void Start()
     {
@@ -25,9 +30,25 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        groundDetection.x = transform.position.x;
+        groundDetection.y = transform.position.y - 1f;
+
         velocity = myRB.velocity;
         velocity.x = Input.GetAxisRaw("Horizontal") * speed;
         myRB.velocity = velocity;
+
+        if (health <= 0)
+        {
+            transform.SetPositionAndRotation(respawnPos, zero);
+            health = 5  ;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && Physics2D.Raycast(groundDetection, Vector2.down, groundDetectDistance))
+        {
+            velocity.y = jumpHeight;
+        }
+        velocity = myRB.velocity;
+        Debug.DrawRay(groundDetection, Vector2.down, UnityEngine.Color.white);
 
     }
 }
