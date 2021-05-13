@@ -13,11 +13,11 @@ public class playerController : MonoBehaviour
     public int health = 3;
     private int jumps = 0;
     private int dash = 0;
-    public float speed = 5;
+    public float speed = 5, defaultSpeed = 5;
     public float jumpHeight = 6.25f;
     public float groundDetectDistance = .1f;
     public Vector2 groundDetection;
-    public int dashDistance = 8;
+    public int dashDistance = 400;
     private int direction = 1;
     private float dashStamp;
     public float dashDuration = 1;
@@ -45,7 +45,9 @@ public class playerController : MonoBehaviour
         }
         velocity = myRB.velocity;
 
-        
+        if (Time.time >= dashStamp)
+            speed = defaultSpeed;
+
         velocity.x = Input.GetAxisRaw("Horizontal") * speed;
         if (velocity.x >= 1)
             direction = 1;
@@ -74,6 +76,7 @@ public class playerController : MonoBehaviour
             velocity = new Vector2(dashDistance * direction, velocity.y);
             dashStamp = Time.time + dashDuration;
             dash += 1;
+            speed = dashDistance;
         }
 
         myRB.velocity = velocity;
