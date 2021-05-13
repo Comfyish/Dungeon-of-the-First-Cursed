@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
     private Quaternion zero;
     public GameManager gm;
 
-    public int health = 3;
+    public int health = 5, maxHealth = 5;
     private int jumps = 0;
     private int dash = 0;
     public float speed = 5, defaultSpeed = 5;
@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
-        respawnPos = new Vector2(0, 0);
+        respawnPos = new Vector2(-50, -1);
         zero = new Quaternion();
 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -41,7 +41,7 @@ public class playerController : MonoBehaviour
         if (health <= 0)
         {
             transform.SetPositionAndRotation(respawnPos, zero);
-            health = 3;
+            health = maxHealth;
         }
         velocity = myRB.velocity;
 
@@ -89,15 +89,26 @@ public class playerController : MonoBehaviour
         {
             respawnPos = collision.gameObject.transform.position;
         }
+        if (collision.gameObject.name.Contains("lava"))
+            health = 0;
+        if (collision.gameObject.name.Contains("Falling"))
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            collision.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            collision.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+            Debug.Log("GameObject2 collided with " + collision.name);
+
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D Collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Collision.gameObject.name.Contains("enemy")||Collision.gameObject.name.Contains("spike"))
+        //make enenmies repel on collision later
+        if (collision.gameObject.name.Contains("Enemy")||collision.gameObject.name.Contains("spike"))
         {
             health--;
         }
-        if (Collision.gameObject.name.Contains("lava"))
+        if (collision.gameObject.name.Contains("lava"))
             health = 0;
     }
 
