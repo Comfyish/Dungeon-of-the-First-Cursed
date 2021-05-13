@@ -22,6 +22,6 @@ public class fallingScript : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY;
         }
-        //Debug.DrawRay(playerDetection, Vector2.down, playerDetectDistance, UnityEngine.Color.white);
+       
     }
 }

@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour
     private int direction = 1;
     private float dashStamp;
     public float dashDuration = 1;
+    public int knivesMax = 10, knives;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class playerController : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         respawnPos = new Vector2(-50, -1);
         zero = new Quaternion();
+
+        knives = knivesMax;
 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -88,6 +91,8 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.name.Contains("checkpoint"))
         {
             respawnPos = collision.gameObject.transform.position;
+            knives = knivesMax;
+            health = maxHealth;
         }
         if (collision.gameObject.name.Contains("lava"))
             health = 0;
