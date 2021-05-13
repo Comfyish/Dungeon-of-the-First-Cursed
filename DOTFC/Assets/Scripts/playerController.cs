@@ -93,10 +93,12 @@ public class playerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Collision)
     {
-        if (Collision.gameObject.name.Contains("enemy"))
+        if (Collision.gameObject.name.Contains("enemy")||Collision.gameObject.name.Contains("spike"))
         {
             health--;
         }
+        if (Collision.gameObject.name.Contains("lava"))
+            health = 0;
     }
 
 }
