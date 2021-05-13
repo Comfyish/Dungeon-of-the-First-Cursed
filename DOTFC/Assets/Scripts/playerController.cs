@@ -15,11 +15,12 @@ public class playerController : MonoBehaviour
     private int dash = 0;
     public float speed = 5;
     public float jumpHeight = 6.25f;
-    public bool isGrounded = true;
     public float groundDetectDistance = .1f;
     public Vector2 groundDetection;
     public int dashDistance = 8;
-    private int direction;
+    private int direction = 1;
+    private float dashStamp;
+    public float dashDuration = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class playerController : MonoBehaviour
         }
         velocity = myRB.velocity;
 
-
+        
         velocity.x = Input.GetAxisRaw("Horizontal") * speed;
         if (velocity.x >= 1)
             direction = 1;
@@ -68,10 +69,12 @@ public class playerController : MonoBehaviour
         }
 
         //allows you to dash
-        if (Input.GetKeyDown(KeyCode.Z) && direction == 1)
-            velocity = new Vector2(dashDistance, velocity.y);
-        else if (Input.GetKeyDown(KeyCode.Z) && direction == -1)
-            velocity = new Vector2(-dashDistance, velocity.y);
+        if (dash < 1 && dashStamp <= Time.time && Input.GetKeyDown(KeyCode.Z))
+        {
+            velocity = new Vector2(dashDistance * direction, velocity.y);
+            dashStamp = Time.time + dashDuration;
+            dash += 1;
+        }
 
         myRB.velocity = velocity;
 
