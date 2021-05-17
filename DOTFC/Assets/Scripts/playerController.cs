@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
     public Vector2 velocity;
     public Vector2 respawnPos;
     private Quaternion zero;
-    public GameManager gm;
+    public gameManager gm;
 
     public int health = 5, maxHealth = 5;
     private int jumps = 0;
@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
     private int direction = 1;
     private float dashStamp;
     public float dashDuration = 1;
-    public int knivesMax = 10, knives;
+    public int knivesMax = 10, knives = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +30,7 @@ public class playerController : MonoBehaviour
         respawnPos = new Vector2(-50, -1);
         zero = new Quaternion();
 
-        knives = knivesMax;
-
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm = GameObject.Find("GameManager").GetComponent<gameManager>();
     }
 
     // Update is called once per frame
@@ -102,7 +100,6 @@ public class playerController : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             collision.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
             Debug.Log("GameObject2 collided with " + collision.name);
-
         }
     }
 
@@ -111,7 +108,7 @@ public class playerController : MonoBehaviour
         //make enenmies repel on collision later
         if (collision.gameObject.name.Contains("Enemy")||collision.gameObject.name.Contains("spike"))
         {
-            health--;
+            health-= 1;
         }
         if (collision.gameObject.name.Contains("lava"))
             health = 0;
