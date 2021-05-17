@@ -20,8 +20,8 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health.GetComponent<Text>().text = "Health: " + player.GetComponent<playerController>().health; //+"/" + player.GetComponent<playerController>().maxHealth;
-        knives.GetComponent<Text>().text = "Knives: " + player.GetComponent<playerController>().knives;
+        health.GetComponent<Text>().text = "Health: " + player.GetComponent<playerController>().health +"/" + player.GetComponent<playerController>().maxHealth;
+        knives.GetComponent<Text>().text = "Knives: " + player.GetComponent<playerController>().knives + "/" + player.GetComponent<playerController>().knivesMax;
 
         if (Input.GetKeyDown(KeyCode.Escape) && pause == false)
         {

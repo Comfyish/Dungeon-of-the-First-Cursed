@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
     private int direction = 1;
     private float dashStamp;
     public float dashDuration = 1;
-    public int knivesMax = 10, knives = 10;
+    public int knives = 10, knivesMax = 10;
 
     // Start is called before the first frame update
     void Start()
