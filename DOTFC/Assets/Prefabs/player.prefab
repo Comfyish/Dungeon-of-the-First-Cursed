@@ -200,5 +200,5 @@ MonoBehaviour:
   groundDetection: {x: 0, y: 3}
   dashDistance: 250
   dashDuration: 0.02
+  knives: 10
   knivesMax: 10
-  knives: 0
