@@ -58,4 +58,14 @@ public class slimeScript : MonoBehaviour
             isFollowing = false;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //make enenmies repel on collision later
+        if (collision.gameObject.name.Contains("knife") || collision.gameObject.name.Contains("spike") || collision.gameObject.name.Contains("lava"))
+        {
+            Destroy(collision.gameObject);
+            this.gameObject.SetActive(false);   
+        }
+    }
 }

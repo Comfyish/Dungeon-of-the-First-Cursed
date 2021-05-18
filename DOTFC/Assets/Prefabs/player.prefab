@@ -191,6 +191,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   respawnPos: {x: 0, y: 0}
   gm: {fileID: 0}
+  knife: {fileID: 4004482202494359078, guid: a87e1fc62a417be41aa014f8a79bf83f, type: 3}
   health: 5
   maxHealth: 5
   speed: 4
@@ -200,5 +201,8 @@ MonoBehaviour:
   groundDetection: {x: 0, y: 3}
   dashDistance: 250
   dashDuration: 0.02
+  knifeCooldown: 1
+  knifeSpeed: 20
+  knifeLife: 2
   knives: 10
   knivesMax: 10

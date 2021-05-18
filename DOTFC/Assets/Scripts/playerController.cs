@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour
     public Vector2 respawnPos;
     private Quaternion zero;
     public gameManager gm;
-
+    public GameObject knife;
     public int health = 5, maxHealth = 5;
     private int jumps = 0;
     private int dash = 0;
@@ -19,8 +19,8 @@ public class playerController : MonoBehaviour
     public Vector2 groundDetection;
     public int dashDistance = 400;
     private int direction = 1;
-    private float dashStamp;
-    public float dashDuration = 1;
+    private float dashStamp, knifeStamp;
+    public float dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2;
     public int knives = 10, knivesMax = 10;
 
     // Start is called before the first frame update
@@ -69,6 +69,31 @@ public class playerController : MonoBehaviour
         {
             jumps += 1;
             velocity.y = jumpHeight;
+        }
+
+        if (knives > 0 && Time.time > knifeStamp)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                GameObject b = Instantiate(knife, new Vector2(transform.position.x - 1, transform.position.y), transform.rotation);
+                b.GetComponent<Rigidbody2D>().velocity = new Vector2(-knifeSpeed, 0);
+
+                //Debug.Log(b.GetComponent<Rigidbody2D>().velocity);
+                knifeStamp = Time.time + knifeCooldown;
+                Destroy(b, knifeLife);
+
+                knives --;
+            }
+
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                GameObject b = Instantiate(knife, new Vector2(transform.position.x + 1, transform.position.y), transform.rotation);
+                b.GetComponent<Rigidbody2D>().velocity = new Vector2(knifeSpeed, 0);
+                knifeStamp = Time.time + knifeCooldown;
+                Destroy(b, knifeLife);
+
+                knives--;
+            }
         }
 
         //allows you to dash

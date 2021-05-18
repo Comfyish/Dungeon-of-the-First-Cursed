@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206552a904e76df4b8f93ea31ab48bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 0}
+  playerTarget: {fileID: 3655401080187726133, guid: 45392833dad28df419cda4f396fe5cae, type: 3}
   movementSpeed: 3
   isFollowing: 0
