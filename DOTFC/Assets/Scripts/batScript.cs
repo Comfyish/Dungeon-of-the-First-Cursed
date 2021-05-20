@@ -69,10 +69,6 @@ public class batScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 lookPos = playerTarget.transform.position - transform.position;
-        lookPos.Normalize();
-
-        //make enenmies repel on collision later
         if (collision.gameObject.name.Contains("player"))
         {
             myRB.velocity = new Vector2(directionX * -repelSpace, directionY * -repelSpace);

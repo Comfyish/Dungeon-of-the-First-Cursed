@@ -7,13 +7,13 @@ public class playerController : MonoBehaviour
     private Rigidbody2D myRB;
     private Quaternion zero;
     private int jumps = 0, dash = 0, direction = 1;
-    private float dashStamp, knifeStamp;
+    private float dashStamp, knifeStamp, repelX, repelY, repelTime;
 
     public Vector2 velocity, respawnPos, groundDetection;
     public GameManager gm;
     public GameObject knife;
     public int health = 5, maxHealth = 5, dashDistance = 400, knives = 10, knivesMax = 10;
-    public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2;
+    public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2, repelDur;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +39,8 @@ public class playerController : MonoBehaviour
 
         if (Time.time >= dashStamp)
             speed = defaultSpeed;
-
-        velocity.x = Input.GetAxisRaw("Horizontal") * speed;
+        if (repelTime < Time.time)
+            velocity.x = Input.GetAxisRaw("Horizontal") * speed;
         if (velocity.x >= 1)
             direction = 1;
         else if (velocity.x <= -1)
@@ -131,6 +131,10 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.name.Contains("arrow"))
         {
             health--;
+            repelX = collision.gameObject.GetComponent<Rigidbody2D>().velocity.x;
+            repelY = collision.gameObject.GetComponent<Rigidbody2D>().velocity.y;
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(repelX, repelY);
+            repelTime = Time.time + repelDur;
             Destroy(collision.gameObject);
         }
     }
