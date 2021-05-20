@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 3973961033385087717}
   - component: {fileID: 4840510148671933145}
   - component: {fileID: 154293229986262267}
-  - component: {fileID: 2886465854126463996}
+  - component: {fileID: 3308966801822408868}
+  - component: {fileID: 2516758455508299603}
+  - component: {fileID: 6265013840908726222}
   m_Layer: 0
   m_Name: skeletonEnemy
   m_TagString: Untagged
@@ -104,8 +106,36 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!60 &2886465854126463996
+  m_Constraints: 4
+--- !u!114 &3308966801822408868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297418553902123826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1d752099482694eac428efde840fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &2516758455508299603
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297418553902123826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
+--- !u!60 &6265013840908726222
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

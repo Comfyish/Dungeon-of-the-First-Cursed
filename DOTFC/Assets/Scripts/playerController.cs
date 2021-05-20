@@ -5,24 +5,15 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Rigidbody2D myRB;
-    public Vector2 velocity;
-    public Vector2 respawnPos;
     private Quaternion zero;
+    private int jumps = 0, dash = 0, direction = 1;
+    private float dashStamp, knifeStamp;
+
+    public Vector2 velocity, respawnPos, groundDetection;
     public gameManager gm;
     public GameObject knife;
-    public int health = 5, maxHealth = 5;
-    private int jumps = 0;
-    private int dash = 0;
-    public float speed = 5, defaultSpeed = 5;
-    public float jumpHeight = 6.25f;
-    public float groundDetectDistance = .1f;
-    public Vector2 groundDetection;
-    public int dashDistance = 400;
-    private int direction = 1;
-    private float dashStamp, knifeStamp;
-    public float dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2;
-    public int knives = 10, knivesMax = 10;
-
+    public int health = 5, maxHealth = 5, dashDistance = 400, knives = 10, knivesMax = 10;
+    public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -137,6 +128,11 @@ public class playerController : MonoBehaviour
         }
         if (collision.gameObject.name.Contains("lava"))
             health = 0;
+        if (collision.gameObject.name.Contains("arrow"))
+        {
+            health--;
+            Destroy(collision.gameObject);
+        }
     }
 
 }

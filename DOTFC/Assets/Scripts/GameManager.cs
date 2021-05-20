@@ -7,10 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
+    private bool pause = false, GameEnd = false;
     public GameObject health, knives, player, paused;
-    public bool pause = false;
-
-    public bool GameEnd = false;
     // Start is called before the first frame update
     void Start()
     {
