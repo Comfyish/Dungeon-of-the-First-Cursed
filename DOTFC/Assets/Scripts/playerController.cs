@@ -34,6 +34,7 @@ public class playerController : MonoBehaviour
         {
             transform.SetPositionAndRotation(respawnPos, zero);
             health = maxHealth;
+            knives = knivesMax;
         }
         velocity = myRB.velocity;
 
@@ -125,6 +126,7 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.name.Contains("Enemy")||collision.gameObject.name.Contains("spike"))
         {
             health-= 1;
+
         }
         if (collision.gameObject.name.Contains("lava"))
             health = 0;
