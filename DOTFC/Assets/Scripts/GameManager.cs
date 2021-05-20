@@ -9,10 +9,13 @@ public class GameManager : MonoBehaviour
 {
     private bool pause = false, GameEnd = false;
     public GameObject health, knives, player, paused;
+    private int nextLvl;
+
     // Start is called before the first frame update
     void Start()
     {
         paused.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (GameEnd)
-            loadMainMenu();
+            StartCoroutine(lvlLoader("Level" + nextLvl.ToString(), 0));
     }
 
     void loadMainMenu()

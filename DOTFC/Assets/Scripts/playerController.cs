@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     private Quaternion zero;
     private int jumps = 0, dash = 0, direction = 1;
     private float dashStamp, knifeStamp, repelX, repelY, repelTime;
+    private bool exit = false;
 
     public Vector2 velocity, respawnPos, groundDetection;
     public GameManager gm;
@@ -138,6 +139,10 @@ public class playerController : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(repelX, repelY);
             repelTime = Time.time + repelDur;
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.name.Contains("Exit"));
+        {
+            exit = true;
         }
     }
 
