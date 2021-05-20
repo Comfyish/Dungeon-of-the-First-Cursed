@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     private bool pause = false, GameEnd = false;
     public GameObject health, knives, player, paused;

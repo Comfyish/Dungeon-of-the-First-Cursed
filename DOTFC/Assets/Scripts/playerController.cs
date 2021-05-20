@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
     private float dashStamp, knifeStamp;
 
     public Vector2 velocity, respawnPos, groundDetection;
-    public gameManager gm;
+    public GameManager gm;
     public GameObject knife;
     public int health = 5, maxHealth = 5, dashDistance = 400, knives = 10, knivesMax = 10;
     public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2;
@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
         respawnPos = new Vector2(-50, -1);
         zero = new Quaternion();
 
-        gm = GameObject.Find("GameManager").GetComponent<gameManager>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
