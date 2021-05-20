@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7878744517429910242}
   - component: {fileID: 4030780048859708700}
   - component: {fileID: 7992845066573692232}
+  - component: {fileID: 6782160949132008996}
+  - component: {fileID: 3583234606062839033}
   m_Layer: 0
   m_Name: batEnemy
   m_TagString: Untagged
@@ -104,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &7992845066573692232
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +136,35 @@ PolygonCollider2D:
       - {x: -0.5, y: 0.5}
       - {x: 0.5, y: 0.5}
       - {x: 0.5, y: -0.5}
+--- !u!114 &6782160949132008996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557738328389739255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4902c761f20c14b8ca365db688ed5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 4
+  repelSpace: 8
+  repelTime: 0
+  repelDur: 0.4
+--- !u!58 &3583234606062839033
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557738328389739255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

@@ -7,10 +7,10 @@ public class skeletonScript : MonoBehaviour
     private Rigidbody2D myRB;
     private GameObject playerTarget;
     private bool isShooting = false;
-    private float arrowStamp;
+    private float arrowStamp, direction;
 
     public GameObject arrow;
-    public float arrowSpeed = 25, arrowCooldown = 1.25f, arrowLife = .5f, direction;
+    public float arrowSpeed = 25, arrowCooldown = 1.25f, arrowLife = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,6 @@ public class skeletonScript : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         playerTarget = GameObject.Find("player");
         playerController playerController = playerTarget.GetComponent<playerController>();
-
     }
 
     // Update is called once per frame
