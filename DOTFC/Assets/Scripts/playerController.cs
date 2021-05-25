@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -140,9 +141,10 @@ public class playerController : MonoBehaviour
             repelTime = Time.time + repelDur;
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.name.Contains("Exit"));
+        if (collision.gameObject.name.Contains("Level"));
         {
-            exit = true;
+            gm.levelName = collision.gameObject.name;
+            gm.GameEnd = true;
         }
     }
 

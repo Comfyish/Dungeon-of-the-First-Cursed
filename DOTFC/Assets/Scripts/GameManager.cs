@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private bool pause = false, GameEnd = false;
+    public bool pause = false, GameEnd = false;
     public GameObject health, knives, player, paused;
     private int nextLvl;
+    public string levelName;
 
     // Start is called before the first frame update
     void Start()
@@ -38,15 +39,22 @@ public class GameManager : MonoBehaviour
         }
 
         if (GameEnd)
-            StartCoroutine(lvlLoader("Level" + nextLvl.ToString(), 0));
+        {
+            if (levelName == "Level1")
+                StartCoroutine(lvlLoader("Level2", 0));
+            else if (levelName == "Level2")
+                StartCoroutine(lvlLoader("Level3", 0));
+            else if (levelName == "Level3")
+                loadMainMenu();
+        }
     }
 
     void loadMainMenu()
     {
-        StartCoroutine(lvlLoader("MainMenu", 1));
+        StartCoroutine(lvlLoader("MainMenu", .5f));
     }
 
-    IEnumerator lvlLoader(string levelName, int waitTime)
+    IEnumerator lvlLoader(string levelName, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
 
