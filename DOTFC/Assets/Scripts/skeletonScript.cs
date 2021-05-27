@@ -8,6 +8,8 @@ public class skeletonScript : MonoBehaviour
     private GameObject playerTarget;
     private bool isShooting = false;
     private float arrowStamp, direction;
+    public AudioSource Speaker;
+    public AudioClip shootSound;
 
     public GameObject arrow;
     public float arrowSpeed = 25, arrowCooldown = 1.25f, arrowLife = .5f;
@@ -42,6 +44,8 @@ public class skeletonScript : MonoBehaviour
             }
 
             float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
+            Speaker.clip = shootSound;
+            Speaker.Play();
             GameObject b = Instantiate(arrow, new Vector2(transform.position.x + direction, transform.position.y), transform.rotation);
             b.GetComponent<Rigidbody2D>().rotation = angle;
             b.GetComponent<Rigidbody2D>().velocity = new Vector3(arrowSpeed * direction, lookPos.y);
