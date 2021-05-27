@@ -8,6 +8,8 @@ public class batScript : MonoBehaviour
     private GameObject playerTarget;
     private bool isFollowing = false;
     private int directionX, directionY;
+    public AudioSource speaker;
+    public AudioClip bat;
 
     public float movementSpeed = 3, repelSpace = 1, repelTime, repelDur = .2f;
     // Start is called before the first frame update
@@ -26,7 +28,8 @@ public class batScript : MonoBehaviour
 
         if (isFollowing && Time.time > repelTime)
         {
-            myRB.velocity = new Vector2(lookPos.x * movementSpeed, lookPos.y* movementSpeed);
+            speaker.loop = true;
+            myRB.velocity = new Vector2(lookPos.x * movementSpeed, lookPos.y * movementSpeed);
 
             if (lookPos.x < 0)
             {
@@ -47,7 +50,10 @@ public class batScript : MonoBehaviour
         }
 
         else if (isFollowing == false)
+        { 
             myRB.velocity = new Vector2(0, 0);
+            speaker.loop = false;
+        }
 
     }
 
