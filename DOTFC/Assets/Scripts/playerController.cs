@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
     private Rigidbody2D myRB;
     private Quaternion zero;
     private int jumps = 0, dash = 0, direction = 1;
-    private float dashStamp, knifeStamp, repelX, repelY, repelTime;
+    private float dashStamp, knifeStamp, repelX, repelY, repelTime, attackStamp;
     private bool exit = false;
 
     public Vector2 velocity, respawnPos, groundDetection;
@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         respawnPos = new Vector2(-50, -1);
         zero = new Quaternion();
+        meleeL.SetActive(false);
+        meleeR.SetActive(false);
 
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -93,7 +95,14 @@ public class playerController : MonoBehaviour
         //for melee
         if (Input.GetKeyDown(KeyCode.LeftShift) && attackStamp < Time.time)
         {
+            if (direction == 1)
+            {
+                
+            }
+            else if( direction == -1)
+            {
 
+            }
         }
 
         //allows you to dash
