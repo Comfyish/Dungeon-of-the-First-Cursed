@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(lvlLoader("Level2", 0));
             else if (levelName == "Level2")
                 StartCoroutine(lvlLoader("Level3", 0));
-            else if (levelName == "Level3")
+            else if (levelName == "TreasureChest")
                 loadMainMenu();
         }
     }
