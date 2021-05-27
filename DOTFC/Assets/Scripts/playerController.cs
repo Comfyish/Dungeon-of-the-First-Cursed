@@ -13,7 +13,7 @@ public class playerController : MonoBehaviour
 
     public Vector2 velocity, respawnPos, groundDetection;
     public GameManager gm;
-    public GameObject knife;
+    public GameObject knife, meleeR, meleeL;
     public int health = 5, maxHealth = 5, dashDistance = 400, knives = 10, knivesMax = 10;
     public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2, repelDur;
     // Start is called before the first frame update
@@ -88,6 +88,12 @@ public class playerController : MonoBehaviour
 
                 knives--;
             }
+        }
+
+        //for melee
+        if (Input.GetKeyDown(KeyCode.LeftShift) && attackStamp < Time.time)
+        {
+
         }
 
         //allows you to dash
