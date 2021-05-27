@@ -172,7 +172,7 @@ public class playerController : MonoBehaviour
             repelTime = Time.time + repelDur;
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.name.Contains("Level"));
+        if (collision.gameObject.name.Contains("Level")|| collision.gameObject.name.Contains("Treasure")) ;
         {
             gm.levelName = collision.gameObject.name;
             gm.GameEnd = true;
