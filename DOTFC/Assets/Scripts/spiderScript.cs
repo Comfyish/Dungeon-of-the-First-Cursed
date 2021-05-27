@@ -74,7 +74,7 @@ public class spiderScript : MonoBehaviour
             myRB.velocity = new Vector2(directionX * -repelSpace, 0);
             repelTime = Time.time + repelDur;
         }
-        if (collision.gameObject.name.Contains("knife") || collision.gameObject.name.Contains("spike") || collision.gameObject.name.Contains("lava"))
+        if (collision.gameObject.name.Contains("knife") || collision.gameObject.name.Contains("spike") || collision.gameObject.name.Contains("lava")|| collision.gameObject.name.Contains("melee"))
         {
             Destroy(collision.gameObject);
             this.gameObject.SetActive(false);   

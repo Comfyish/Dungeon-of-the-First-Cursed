@@ -322,6 +322,8 @@ MonoBehaviour:
   knifeSpeed: 20
   knifeLife: 2
   repelDur: 0.15
+  attackDur: 0.2
+  attackCoolTime: 0.4
 --- !u!1 &7220134858225713777
 GameObject:
   m_ObjectHideFlags: 0

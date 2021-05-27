@@ -8,14 +8,14 @@ public class playerController : MonoBehaviour
     private Rigidbody2D myRB;
     private Quaternion zero;
     private int jumps = 0, dash = 0, direction = 1;
-    private float dashStamp, knifeStamp, repelX, repelY, repelTime, attackStamp;
-    private bool exit = false;
+    private float dashStamp, knifeStamp, repelX, repelY, repelTime, attackStamp, attackCooldown;
+    private bool exit = false, invulnerable = false;
 
     public Vector2 velocity, respawnPos, groundDetection;
     public GameManager gm;
     public GameObject knife, meleeR, meleeL;
     public int health = 5, maxHealth = 5, dashDistance = 400, knives = 10, knivesMax = 10;
-    public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2, repelDur;
+    public float speed = 5, defaultSpeed = 5, jumpHeight = 6.25f, groundDetectDistance = .1f, dashDuration = 1, knifeCooldown = 1, knifeSpeed = 20, knifeLife = 2, repelDur, attackDur, attackCoolTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,16 +93,28 @@ public class playerController : MonoBehaviour
         }
 
         //for melee
-        if (Input.GetKeyDown(KeyCode.LeftShift) && attackStamp < Time.time)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && attackCooldown < Time.time)
         {
             if (direction == 1)
             {
-                
+                invulnerable = true;
+                meleeR.SetActive(true);
+                attackStamp = Time.time + attackDur;
+                attackCooldown = Time.time + attackCoolTime;
             }
             else if( direction == -1)
             {
-
+                invulnerable = true;
+                meleeL.SetActive(true);
+                attackStamp = Time.time + attackDur;
+                attackCooldown = Time.time + attackCoolTime;
             }
+        }
+        else if(attackStamp < Time.time)
+        {
+            invulnerable = false;
+            meleeL.SetActive(false);
+            meleeR.SetActive(false);
         }
 
         //allows you to dash
@@ -140,10 +152,14 @@ public class playerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //make enenmies repel on collision later
-        if (collision.gameObject.name.Contains("Enemy")||collision.gameObject.name.Contains("spike"))
+        if ((collision.gameObject.name.Contains("Enemy")||collision.gameObject.name.Contains("spike"))&& invulnerable == false)
         {
             health-= 1;
 
+        }
+        else if (invulnerable == true && collision.gameObject.name.Contains("Enemy"))
+        {
+            collision.gameObject.SetActive(false);
         }
         if (collision.gameObject.name.Contains("lava"))
             health = 0;
