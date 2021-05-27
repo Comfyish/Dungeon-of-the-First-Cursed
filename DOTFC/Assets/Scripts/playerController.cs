@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
+    public AudioSource Speaker;
+    public AudioClip jumpSound, shootSound;
     private Rigidbody2D myRB;
     private Quaternion zero;
     private int jumps = 0, dash = 0, direction = 1;
@@ -65,12 +67,16 @@ public class playerController : MonoBehaviour
         {
             jumps += 1;
             velocity.y = jumpHeight;
+            Speaker.clip = jumpSound;
+            Speaker.Play();
         }
 
         if (knives > 0 && Time.time > knifeStamp)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                Speaker.clip = shootSound;
+                Speaker.Play();
                 GameObject b = Instantiate(knife, new Vector2(transform.position.x - 1, transform.position.y), transform.rotation);
                 b.GetComponent<Rigidbody2D>().velocity = new Vector2(-knifeSpeed, 0);
 
@@ -87,7 +93,8 @@ public class playerController : MonoBehaviour
                 b.GetComponent<Rigidbody2D>().velocity = new Vector2(knifeSpeed, 0);
                 knifeStamp = Time.time + knifeCooldown;
                 Destroy(b, knifeLife);
-
+                Speaker.clip = shootSound;
+                Speaker.Play();
                 knives--;
             }
         }
